@@ -13,6 +13,7 @@ Dependences:
     python - skimage
     python - NumPy
     python - Matplolib
+    python - Gdal
 
 
 
