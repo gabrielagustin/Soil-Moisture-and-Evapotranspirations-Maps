@@ -8,10 +8,11 @@ Description:
 
 Dependences:
 
-    python - Geopandas
-    python - H5py 
-    python - Pykml
-    python - Shapely
-    python - Pandas
+    python - sklearn
+    python - mpl_toolkits
+    python - skimage
     python - NumPy
     python - Matplolib
+
+
+
