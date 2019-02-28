@@ -1,7 +1,12 @@
 # Generate_SM_ET_Maps
 
 
-Description:
+Description: 
+
+Generates maps of SM or ET from satellite images and the application of different models. 
+The application of the model is basically performing matrix operations. Previously, satellite 
+images must be modified to obtain the same projections and spatial resolutions.
+
 
 ...
 
