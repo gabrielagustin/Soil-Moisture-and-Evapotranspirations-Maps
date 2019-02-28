@@ -16,6 +16,11 @@ import matplotlib.pyplot as plt
 
 
 def openFileHDF(file, nroBand):
+    """
+    Funcion que recibe path completo de la imagen raster y el numero de banda a leer
+    retorna el objeto source del raster, banda y las caracteristicas del raster 
+    geotransformación y la proyeccion
+    """
     #print "Open File"
     # file = path+nameFile
     #print file
@@ -51,9 +56,11 @@ def openFileHDF(file, nroBand):
 
 
 def matchData(data_src, data_match, type, nRow, nCol):
-    # funcion que retorna la informacion presente en el raster data_scr
-    # modificada con los datos de proyeccion y transformacion del raster data_match
-    # se crea un raster en memoria que va a ser el resultado
+    """
+    Funcion que retorna la informacion presente en el raster data_scr
+    modificada con los datos de proyeccion y transformacion del raster data_match
+    se crea un raster en memoria que va a ser el resultado    
+    """
     #data_result = gdal.GetDriverByName('MEM').Create('', data_match.RasterXSize, data_match.RasterYSize, 1, gdalconst.GDT_Float64)
 
     data_result = gdal.GetDriverByName('MEM').Create('', nCol, nRow, 1, gdalconst.GDT_Float64)
@@ -74,11 +81,14 @@ def matchData(data_src, data_match, type, nRow, nCol):
     return data_result
 
 
-# funcion que crea un archivo HDF basado en los datos Geotransform y Projection
-# de la imagen original, recibe ademas el nombre del archivo de salida, el tipo
-# de archivo a crear, la imagen y su taman
+
 
 def createHDFfile(path, nameFileOut, driver, img, xsize, ysize, GeoT, Projection):
+    """
+    Funcion que crea un archivo HDF basado en los datos Geotransform y Projection
+    de la imagen original, recibe ademas el nombre del archivo de salida, el tipo
+    de archivo a crear, la imagen y su tamaño
+    """
     print("archivo creado:" + str(nameFileOut))
     driver = gdal.GetDriverByName(driver)
     ds = driver.Create(path + nameFileOut, xsize, ysize, 1, gdal.GDT_Float64)
