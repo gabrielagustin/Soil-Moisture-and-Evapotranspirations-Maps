@@ -20,14 +20,11 @@ are used.
 
 Evapotranspiration maps examples:
 
-- 36 km spatial resolucion:
+- 36 km spatial resolucion (ET observada, ET modelada y Error):
 
 <p align="center">
-  <br/>ET observada
   <img width=285 src="2016_05_15_ETObservada.png"/>
-  <br/>ET modelada
   <img width=285 src="2016_05_15_ETmodelada.png"/>
-  <br/>Error
   <img width=285 src="2016_05_15_Error.png"/>
 </p>
 
