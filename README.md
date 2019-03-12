@@ -18,6 +18,16 @@ Spatial resolutions are changed using reprojection operations based on interpola
 are used.
 
 
+Evapotranspiration maps examples:
+
+- 36 km spatial resolucion:
+
+<p align="center">
+  <img width=325 src="2016_05_15_ETObservada.png"/>
+  <img width=325 src="2016_05_15_ETmodelada.png"/>
+  <img width=325 src="2016_05_15_Error.png"/>
+</p>
+
 
 ...
 
