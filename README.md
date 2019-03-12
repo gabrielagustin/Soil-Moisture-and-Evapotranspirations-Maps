@@ -23,9 +23,9 @@ Evapotranspiration maps examples:
 - 36 km spatial resolucion:
 
 <p align="center">
-  <img width=300 src="2016_05_15_ETObservada.png"/>
-  <img width=300 src="2016_05_15_ETmodelada.png"/>
-  <img width=300 src="2016_05_15_Error.png"/>
+  <img width=285 src="2016_05_15_ETObservada.png"/>
+  <img width=285 src="2016_05_15_ETmodelada.png"/>
+  <img width=285 src="2016_05_15_Error.png"/>
 </p>
 
 
