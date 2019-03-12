@@ -29,6 +29,16 @@ Evapotranspiration maps examples:
 </p>
 
 
+
+Soil moisture maps examples:
+- 30 m spatial resolucion (Multiple linear regression, Multilayer perceptron and Multivariate adaptive regression splines models):
+
+<p align="center">
+  <img width=285 src="2015-06-29_MLR.png"/>
+  <img width=285 src="2015-06-29_MLP.png"/>
+  <img width=285 src="2015-06-29_MARS.png"/>
+</p>
+
 ...
 
 
