@@ -5,6 +5,11 @@
 Created on Mon Sep 10 14:37:54 2018
 
 @author: gag
+
+Function that opens a set of satellite images, performs the corresponding transformations
+to unify resolutions, projections and sizes, to then apply a specific methodology.
+Then, get the maps of the physical variables and contrast them with other sources.
+
 """
 
 
@@ -14,7 +19,6 @@ from matplotlib import cm
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from skimage.measure import compare_ssim as ssim
 from sklearn.metrics import mean_squared_error
-
 
 
 import functions
@@ -116,9 +120,9 @@ def calculateETMaps():
 #        ax.imshow(band_matchDelta, interpolation='None',cmap=cm.gray)
 
 
-################################################################################
-######## here goes the equation to calculate the ET       
-################################################################################
+        ################################################################################
+        ######## here goes the equation to calculate the ET       
+        ################################################################################
 
 #        fig, ax = plt.subplots()
 #        ax.imshow(mapET, interpolation='None',cmap=cm.gray)
@@ -204,3 +208,4 @@ def calculateETMaps():
 
 if __name__ == '__main__':
     calculateETMaps()
+
