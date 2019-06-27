@@ -62,7 +62,7 @@ def createHDFfile(path, nameFileOut, driver, GeoT, Projection, img, xsize, ysize
     Function that creates a new .HDF file.
      
     Input: path and name of the file to be created, file type, geotransform and
-    Projection data, data that represent the image and size
+    projection data, data that represent the image and size
     Return: -
     """
     print("archivo creado:" + str(nameFileOut))
