@@ -19,9 +19,10 @@ import matplotlib.pyplot as plt
 
 def openFileHDF(file, nroBand):
     """
-    Function that receives the complete path of the raster image and the number 
-    of the band to be read.
-    Returns the source raster object, band and the characteristics of the raster (geotransformation 
+    Function that opens an image with .HDF format and reads a specific band.
+
+    Input: complete path of the raster image and the number of the band to be read. 
+    Return: the source raster object, band and the characteristics of the raster (geotransformation 
     and projection).
 
     """
@@ -56,10 +57,13 @@ def openFileHDF(file, nroBand):
     return src_ds, band, GeoT, Project
 
 
-def createHDFfile(path, nameFileOut, driver, img, xsize, ysize, GeoT, Projection):
+def createHDFfile(path, nameFileOut, driver, GeoT, Projection, img, xsize, ysize):
     """
-    Function that creates an .HDF file based on the Geotransform and Projection data of the original image, 
-    also receives the name of the output file, the type of file to be created, image and its size
+    Function that creates a new .HDF file.
+     
+    Input: path and name of the file to be created, file type, geotransform and
+    Projection data, data that represent the image and size
+    Return: -
     """
     print("archivo creado:" + str(nameFileOut))
     driver = gdal.GetDriverByName(driver)
@@ -71,20 +75,20 @@ def createHDFfile(path, nameFileOut, driver, img, xsize, ysize, GeoT, Projection
     return
 
 
-
-
-
-def matchData(data_src, data_match, type, nRow, nCol):
+def matchData(data_src, data_match, nRow, nCol, type):
     """
-    Function that returns the information present in the raster data_scr modified with the data
-    of projection and transformation of data_match raster. 
-    A raster is created in memory that will be the result.
+    Function that performs the match to a raster data from a source raster modifying the projection,
+    the transformation and the size. Different interpolation methods are used. 
+    
+    Input: raster source, raster to match, raster size and interpolation method
+    Return: a new raster created in memory
+
     """
     #data_result = gdal.GetDriverByName('MEM').Create('', data_match.RasterXSize, data_match.RasterYSize, 1, gdalconst.GDT_Float64)
 
     data_result = gdal.GetDriverByName('MEM').Create('', nCol, nRow, 1, gdalconst.GDT_Float64)
 
-    # Se establece el tipo de proyección y transfomcion en resultado  qye va ser coincidente con data_match
+    # Se establece el tipo de proyección y transfomcion en resultado  que va ser coincidente con data_match
     data_result.SetGeoTransform(data_match.GetGeoTransform())
     data_result.SetProjection(data_match.GetProjection())
 
