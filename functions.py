@@ -5,8 +5,10 @@
 Created on Mon Sep 10 14:37:54 2018
 
 @author: gag
-"""
 
+Necessary functions for opening and creating .HDF files. And to make the match between two .HDF files. 
+
+"""
 
 
 import numpy as np
@@ -17,13 +19,13 @@ import matplotlib.pyplot as plt
 
 def openFileHDF(file, nroBand):
     """
-    Funcion que recibe path completo de la imagen raster y el numero de banda a leer
-    retorna el objeto source del raster, banda y las caracteristicas del raster 
-    geotransformación y la proyeccion
+    Function that receives the complete path of the raster image and the number 
+    of the band to be read.
+    Returns the source raster object, band and the characteristics of the raster (geotransformation 
+    and projection).
+
     """
-    #print "Open File"
-    # file = path+nameFile
-    #print file
+
     try:
         src_ds = gdal.Open(file)
     except (RuntimeError, e):
@@ -54,12 +56,29 @@ def openFileHDF(file, nroBand):
     return src_ds, band, GeoT, Project
 
 
+def createHDFfile(path, nameFileOut, driver, img, xsize, ysize, GeoT, Projection):
+    """
+    Function that creates an .HDF file based on the Geotransform and Projection data of the original image, 
+    also receives the name of the output file, the type of file to be created, image and its size
+    """
+    print("archivo creado:" + str(nameFileOut))
+    driver = gdal.GetDriverByName(driver)
+    ds = driver.Create(path + nameFileOut, xsize, ysize, 1, gdal.GDT_Float64)
+    ds.SetProjection(Projection)
+    geotransform = GeoT
+    ds.SetGeoTransform(geotransform)
+    ds.GetRasterBand(1).WriteArray(np.array(img))
+    return
+
+
+
+
 
 def matchData(data_src, data_match, type, nRow, nCol):
     """
-    Funcion que retorna la informacion presente en el raster data_scr
-    modificada con los datos de proyeccion y transformacion del raster data_match
-    se crea un raster en memoria que va a ser el resultado    
+    Function that returns the information present in the raster data_scr modified with the data
+    of projection and transformation of data_match raster. 
+    A raster is created in memory that will be the result.
     """
     #data_result = gdal.GetDriverByName('MEM').Create('', data_match.RasterXSize, data_match.RasterYSize, 1, gdalconst.GDT_Float64)
 
@@ -83,18 +102,5 @@ def matchData(data_src, data_match, type, nRow, nCol):
 
 
 
-def createHDFfile(path, nameFileOut, driver, img, xsize, ysize, GeoT, Projection):
-    """
-    Funcion que crea un archivo HDF basado en los datos Geotransform y Projection
-    de la imagen original, recibe ademas el nombre del archivo de salida, el tipo
-    de archivo a crear, la imagen y su tamaño
-    """
-    print("archivo creado:" + str(nameFileOut))
-    driver = gdal.GetDriverByName(driver)
-    ds = driver.Create(path + nameFileOut, xsize, ysize, 1, gdal.GDT_Float64)
-    ds.SetProjection(Projection)
-    geotransform = GeoT
-    ds.SetGeoTransform(geotransform)
-    ds.GetRasterBand(1).WriteArray(np.array(img))
-    return
+
 
