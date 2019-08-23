@@ -18,13 +18,20 @@ import matplotlib.pyplot as plt
 
 
 def openFileHDF(file, nroBand):
-    """
+    """ 
     Function that opens an image with .HDF format and reads a specific band.
 
-    Input: complete path of the raster image and the number of the band to be read. 
-    Return: the source raster object, band and the characteristics of the raster (geotransformation 
-    and projection).
+    Parameters:
+    -----------
+    file : complete path of the raster image 
+    nroBand : number of the band to be read 
 
+    Returns: 
+    --------
+    src_ds: source raster object
+    band:
+    GeoT: georeference
+    Project: projection
     """
 
     try:
@@ -58,13 +65,22 @@ def openFileHDF(file, nroBand):
 
 
 def createHDFfile(path, nameFileOut, driver, GeoT, Projection, img, xsize, ysize):
-    """
+    """ 
     Function that creates a new .HDF file.
-     
-    Input: path and name of the file to be created, file type, geotransform and
-    projection data, data that represent the image and size
-    Return: -
+
+    Parameters:
+    -----------
+    path, nameFileOut: path and name of the file to be created,
+    driver: file type
+    GeoT, Projection: geotransform and projection data
+    img: data that represent the image
+    xsize, ysize: image size
+
+    Returns: 
+    --------
+
     """
+
     print("archivo creado:" + str(nameFileOut))
     driver = gdal.GetDriverByName(driver)
     ds = driver.Create(path + nameFileOut, xsize, ysize, 1, gdal.GDT_Float64)
@@ -76,14 +92,22 @@ def createHDFfile(path, nameFileOut, driver, GeoT, Projection, img, xsize, ysize
 
 
 def matchData(data_src, data_match, nRow, nCol, type):
-    """
+    """ 
     Function that performs the match to a raster data from a source raster modifying the projection,
     the transformation and the size. Different interpolation methods are used. 
-    
-    Input: raster source, raster to match, raster size and interpolation method
-    Return: a new raster created in memory
 
+    Parameters:
+    -----------
+    data_src: raster source
+    data_match: raster to match
+    nRow, nCol: raster size
+    type: interpolation method ('Nearest', 'Bilinear', 'Cubic', 'Average')
+
+    Returns: 
+    --------
+    data_result: a new raster created in memory
     """
+
     #data_result = gdal.GetDriverByName('MEM').Create('', data_match.RasterXSize, data_match.RasterYSize, 1, gdalconst.GDT_Float64)
 
     data_result = gdal.GetDriverByName('MEM').Create('', nCol, nRow, 1, gdalconst.GDT_Float64)
